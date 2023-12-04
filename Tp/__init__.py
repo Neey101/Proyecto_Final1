@@ -35,4 +35,10 @@ def create_app(test_config=None):
     from . import musica
     app.register_blueprint(musica.bp)
 
+    from . import artist
+    app.register_blueprint(artist.bp)
+
+    from . import albums
+    app.register_blueprint(albums.bp)
+
     return app
