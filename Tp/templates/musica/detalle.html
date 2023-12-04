@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Musica{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<h1>nombre: {{ track['name'] }}</h1>
+<h2>duración: {{ track['milliseconds'] }}</h2>
+
+{% endblock %}

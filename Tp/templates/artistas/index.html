@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Artistas{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+  {% for t in track %}
+      <h1>{{ t['nombre'] }}</h1>
+      {% if not loop.last %}
+      <hr>
+      {% endif %}
+      {% endfor %}
+
+{% endblock %}

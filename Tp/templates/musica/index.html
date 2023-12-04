@@ -4,8 +4,8 @@
   <h1>{% block title %}Musica{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-  {% for t in track %}
-      <h1>{{ t['nombre'] }}</h1>
+  {% for t in tracks %}
+      <h1><a href="{{url_for('musica.detalle', id=t['trackId'])}}"> {{ t['nombre'] }}</a></h1>
       {% if not loop.last %}
       <hr>
       {% endif %}

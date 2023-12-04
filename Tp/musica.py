@@ -10,23 +10,20 @@ bp = Blueprint('musica', __name__, url_prefix='/musica/')
 @bp.route('/')
 def index():
     db = get_db()
-    track = db.execute(
-        """SELECT name AS nombre
+    tracks = db.execute(
+        """SELECT name AS nombre, trackId
          FROM tracks
          ORDER BY name ASC """
     ).fetchall()
-    return render_template('musica/index.html', track=track)
+    return render_template('musica/index.html', tracks=tracks)
 
 
-@bp.route('/<int:id>/update', methods=('GET', 'POST'))
-def detalle(id, check_author=True):
-    post = get_db().execute(
-        """SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' WHERE p.id = ?""",
+@bp.route('/<int:id>', methods=('GET', 'POST'))
+def detalle(id):
+    track = get_db().execute(
+        """SELECT t.name, t.milliseconds FROM tracks t
+         WHERE t.trackId = ?""",
         (id,)
     ).fetchone()
 
-
-
-    return render_template('musica/index.html', track=track)
+    return render_template('musica/detalle.html', track=track)
