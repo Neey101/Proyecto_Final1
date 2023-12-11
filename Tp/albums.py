@@ -13,6 +13,6 @@ def index():
     album = db.execute(
          """SELECT AlbumId AS id, Title AS album 
          FROM albums
-         ORDER BY Title DESC """
+         ORDER BY Title ASC """
     ).fetchall()
     return render_template('albumes/index.html', album=album)
