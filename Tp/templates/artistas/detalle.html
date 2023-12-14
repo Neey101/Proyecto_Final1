@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Artistas{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+<h1>artista: {{ artist['artista'] }}</h1>
+{% for c in cancion %}
+<h2>Nombre: {{ c['nombre'] }}</h2>
+<h3>Compositor: {{ c['compositor'] }}</h3>
+{% endfor %}
+{% endblock %}

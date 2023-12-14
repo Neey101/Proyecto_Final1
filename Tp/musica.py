@@ -21,23 +21,12 @@ def index():
 @bp.route('/<int:id>', methods=('GET', 'POST'))
 def detalle(id):
     track = get_db().execute(
-        """SELECT t.name, t.milliseconds
+        """SELECT t.name, t.milliseconds, g.Name as genero
 	        FROM tracks t
-                WHERE t.trackId 
-		          ORDER BY name ASC """,
+            JOIN genres g ON g.GenreId = t.GenreId
+            WHERE t.trackId = ?
+		    ORDER BY t.Name ASC """,
         (id,)
     ).fetchone()
-
     return render_template('musica/detalle.html', track=track)
 
-@bp.route('/<int:id>', methods=('GET', 'POST'))
-def detalle(id):
-    track = get_db().execute(
-        """SELECT g.name,  g.GenreId
-                FROM genres g
-		         WHERE g.GenreId
-			        ORDER BY Name ASC""",
-        (id,)
-    ).fetchone()
-
-    return render_template('musica/detalle.html', track=track)
